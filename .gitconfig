@@ -1,0 +1,9 @@
+[user]
+	email = myemail@email.com
+	name = Full Name
+[color]
+	ui = true
+[push]
+	default = current
+[core]
+	editor = vim
