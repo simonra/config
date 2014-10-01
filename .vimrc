@@ -1,3 +1,5 @@
+"To copy out of vim, shift+select with mouse
+
 set history=50
 "Allows the use of the mouse, allways
 set mouse=a
