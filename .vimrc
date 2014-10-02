@@ -1,6 +1,7 @@
 "To copy out of vim, shift+select with mouse
 
 set history=50
+set ignorecase
 "Allows the use of the mouse, allways
 set mouse=a
 "No error bells of any kind
