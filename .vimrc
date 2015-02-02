@@ -12,7 +12,7 @@ set number
 set ruler
 set showcmd
 "Sets the displayed tab-size
-set tabstop=3
+set tabstop=2
 "wraps lines when you reach the end
 "<,>,h, and l are for normal and visual, 
 " [, and ] are for the arrow keys in insert and replace mode
