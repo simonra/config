@@ -28,3 +28,8 @@ set autoindent
 "Command-line autocomplete
 set wildmode=longest,list
 set wildmenu
+"Make the statusline show the filepath in a more sensible way
+"F is for full path, y is filetype
+set statusline=%<%F\ %h%m%r%y%=%-14.(%l,%c%V%)\ %P
+"Show path and charet position info on separate line
+set laststatus=2
