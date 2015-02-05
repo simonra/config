@@ -1,6 +1,6 @@
 "To copy out of vim, shift+select with mouse
 
-set enconding=utf-8
+set encoding=utf-8
 set history=50
 set ignorecase
 "Allows the use of the mouse, allways
