@@ -25,3 +25,6 @@ set whichwrap+=<,h,[
 syntax on
 "Automatically indent new line the same as last one
 set autoindent
+"Command-line autocomplete
+set wildmode=longest,list
+set wildmenu
