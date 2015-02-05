@@ -18,3 +18,5 @@ set tabstop=2
 " [, and ] are for the arrow keys in insert and replace mode
 set whichwrap+=>,l,]
 set whichwrap+=<,h,[
+"Enable syntax highlighting
+syntax on
