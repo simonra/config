@@ -1,0 +1,10 @@
+{
+	"draw_white_space": "all",
+	"font_size": 11,
+	"ignored_packages":
+	[
+	],
+	"shift_tab_unindent": true,
+	"word_wrap": "true"
+}
+
