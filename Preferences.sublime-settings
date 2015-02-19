@@ -5,6 +5,7 @@
 	[
 	],
 	"shift_tab_unindent": true,
-	"word_wrap": "true"
+	"word_wrap": "true",
+	"auto_complete_selector": "source, text"
 }
 
