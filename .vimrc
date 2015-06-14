@@ -23,6 +23,8 @@ set whichwrap+=>,l,]
 set whichwrap+=<,h,[
 "Enable syntax highlighting
 syntax on
+"Use dark background so the highlighting makes sense in the environments I usually use
+set background=dark
 "Automatically indent new line the same as last one
 set autoindent
 "Command-line autocomplete
