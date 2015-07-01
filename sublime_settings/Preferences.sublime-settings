@@ -1,13 +1,13 @@
 {
-	"font_size": 12,
-	"draw_white_space": "all",
-	"word_wrap": true,
-	"shift_tab_unindent": true,
-	"ensure_newline_at_eof_on_save": true,
 	"auto_complete_selector": "source, text",
+	"copy_with_empty_selection": false,
+	"draw_white_space": "all",
+	"ensure_newline_at_eof_on_save": true,
+	"font_size": 10,
 	"ignored_packages":
 	[
 	],
+	"shift_tab_unindent": true,
 	"update_check": false,
-	"copy_with_empty_selection": false
+	"word_wrap": "true"
 }
