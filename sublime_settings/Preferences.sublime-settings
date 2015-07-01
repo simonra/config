@@ -8,5 +8,6 @@
 	"ignored_packages":
 	[
 	],
-	"update_check": false
+	"update_check": false,
+	"copy_with_empty_selection": false
 }
