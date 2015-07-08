@@ -1,7 +1,7 @@
-#XKB mapping to altgr-keys
+#XKB mapping to AltGr-keys
 
 My usecase was that I wanted to map a special set of keys
-to certain key combinations using altGr (right alt) on the
+to certain key combinations using AltGr (right alt) on the
 us keyboard layout. The way I did it was that I took a dump
 of the international us layout, edited it, and set it as the
 keyboard. Step by step:
