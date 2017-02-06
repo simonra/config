@@ -13,4 +13,4 @@ function which($name)
 }
 
 # Uncomment to override path with user-defined string:
-# $env:Path = (Get-Content $HOME/Documents/WindowsPowerShell/profile.txt -Raw).Replace("`r`n","")
+# $env:Path = (Get-Content $HOME/Documents/WindowsPowerShell/path.txt -Raw).Replace("`r`n","")
