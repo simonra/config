@@ -11,3 +11,6 @@ function which($name)
 {
     Get-Command $name | Select-Object -ExpandProperty Definition
 }
+
+# Uncomment to override path with user-defined string:
+# $env:Path = (Get-Content $HOME/Documents/WindowsPowerShell/profile.txt -Raw).Replace("`r`n","")
