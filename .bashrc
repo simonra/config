@@ -20,3 +20,8 @@ if [ "$color_prompt" = yes ]; then
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
+
+#Take argument 1, zip it recursively,
+#pass the output on (the - parameter),
+#append it to argument 2 with cat.
+zipcat () { zip -r - $1 | cat >> $2 ; }
