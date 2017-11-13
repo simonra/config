@@ -28,5 +28,10 @@ function touch($file)
     }
 }
 
+function diffContent($fileA, $fileB)
+{
+    diff (cat $fileA) (cat $fileB)
+}
+
 # Uncomment to override path with user-defined string:
 # $env:Path = ((Get-Content $HOME/Documents/WindowsPowerShell/path.txt -Raw) -replace "(?m)#.*`n?", '').Replace("`r`n","")
