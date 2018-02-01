@@ -12,6 +12,14 @@ function which($name)
     Get-Command $name | Select-Object -ExpandProperty Definition
 }
 
+function mkdirWithTest($path)
+{
+    if (!(Test-Path $path) )
+    {
+        New-Item -ItemType Directory -Force -Path $path
+    }
+}
+
 function touch($file)
 {
     if($file -eq $null)
@@ -24,7 +32,12 @@ function touch($file)
     }
     else
     {
-        echo $null > $file
+        $pathToFile = Split-Path -Path $file;
+        if(![string]::IsNullOrEmpty($pathToFile))
+        {
+            mkdirWithTest($pathToFile);
+        }
+        echo $null > $file;
     }
 }
 
