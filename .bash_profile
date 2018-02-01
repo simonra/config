@@ -1,5 +1,6 @@
+cd ~
 source /local/skel/all.bash_profile
-source .bashrc
+source ~/.bashrc
 setterm -blength 0
 
 #Chrome likes to make sure only one instance is running.
@@ -9,7 +10,7 @@ setterm -blength 0
 #on, and thus makes crom(ium) available for the session.)
 #(The -f is to make sure it doesn't complain when the file
 #doesn't exist.)
-rm -f .config/chromium/SingletonLock
+rm -f ~/.config/chromium/SingletonLock
 
 
 #Makes the file .setDisplayAndXauthority. What it does is
@@ -25,22 +26,23 @@ rm -f .config/chromium/SingletonLock
 #tty are not much good after all). Therefore we check for
 #whether the session we are logging in to has a display. If
 #yes, the file is written. If not, the if check fails, and
-#the file is not iverwritten (which is the desired behaviour).
+#the file is not overwritten (which is the desired behaviour).
+
+touch ~/etc/.setDisplayAndXauthority
 
 #Space after if is important!!!
 if [[ "x$DISPLAY" != "x" ]];then
 {
 echo "export XAUTHORITY=\"$XAUTHORITY\""
 echo "export DISPLAY=\"$DISPLAY\""
-}>.setDisplayAndXauthority
+}>~/etc/.setDisplayAndXauthority
 else
-. .setDisplayAndXauthority
+. ~/etc/.setDisplayAndXauthority
 fi
 
-chmod +x .setDisplayAndXauthority
+chmod +x ~/etc/.setDisplayAndXauthority
 
 #End of ttyAwesomeScript
-
 
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
