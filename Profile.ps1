@@ -41,6 +41,11 @@ function touch($file)
     }
 }
 
+function cur($uri)
+{
+    (Invoke-WebRequest -Uri $uri -UseBasicParsing).Content
+}
+
 function diffContent($fileA, $fileB)
 {
     diff (cat $fileA) (cat $fileB)
