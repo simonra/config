@@ -21,6 +21,13 @@ The PowerShell Profile, just like `.gitconfig`, gets loaded automagially when pl
 
 So, to figure out where the profiles that are actually being loaded are located, you can run
 ```PowerShell
-$PROFILE | Format-List * -Force
+$profile | Format-List * -Force
 ```
 For your personal setup you'll usually want to go with the location described as `CurrentUserCurrentHost`
+
+# Misc
+
+First time setup (can be run before seting up the ExecutionPolicy, to not mess with permissions maybe don't run as admin?)
+```PowerShell
+(Invoke-WebRequest -Uri https://raw.githubusercontent.com/simonra/config/master/WindowsPowerShell/Profile.ps1 -UseBasicParsing).content > $profile; Push-Location (Split-Path -Path $profile); mkdir Modules; cd Modules; (Invoke-WebRequest -Uri https://raw.githubusercontent.com/simonra/config/master/WindowsPowerShell/Modules/get-size.psm1 -UseBasicParsing).content > ./get-size.psm1; Pop-Location
+```
