@@ -51,10 +51,6 @@ function diffContent($fileA, $fileB)
     diff (cat $fileA) (cat $fileB)
 }
 
-# If you suspect the current profile is being stored in a weird place
-# you can run this command to see the paths for the current profiles:
-# $PROFILE | Format-List * -Force
-
 Import-Module $PSScriptRoot/Modules/*
 
 # Uncomment to override path with user-defined string:
