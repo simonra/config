@@ -51,7 +51,5 @@ function diffContent($fileA, $fileB)
     diff (cat $fileA) (cat $fileB)
 }
 
-Import-Module $PSScriptRoot/Modules/*
-
 # Uncomment to override path with user-defined string:
 # $env:Path = ((Get-Content $PSScriptRoot/path.txt -Raw) -replace "(?m)#.*`n?", '').Replace("`r`n","")
