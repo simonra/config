@@ -25,6 +25,12 @@ $profile | Format-List * -Force
 ```
 For your personal setup you'll usually want to go with the location described as `CurrentUserCurrentHost`
 
+# Modules
+
+Modules get automatically loaded when placed in one of the directories listed when running `$env:PSModulePath`. If for some reason this doesn't happen you can add `Import-Module path/to/modules/from/above/*` (I briefly ran with `$PSScriptRoot/Modules/*`).
+
+For module files (`.psm1`) to be automatically loaded they have to be placed in a directory having the same name as the the module it self. For instance if `~/Documents/WindowsPowerShell/Modules` is the modules path a module one wants to automatically be loaded named `mod` should be located here: `~/Documents/WindowsPowerShell/Modules/mod/mod.psm1`.
+
 # Misc
 
 First time setup (can be run before seting up the ExecutionPolicy, to not mess with permissions maybe don't run as admin?)
