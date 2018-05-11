@@ -79,7 +79,3 @@ function FormatSize([double]$sizeInBytes)
 }
 
 Export-ModuleMember -Function *
-# General pattern is:
-#Export-ModuleMember -Function FunctionName -Alias AliasDefinedAbove
-# To export all with respective aliases:
-# Export-ModuleMember -Function * -Alias *

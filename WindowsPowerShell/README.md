@@ -31,9 +31,16 @@ Modules get automatically loaded when placed in one of the directories listed wh
 
 For module files (`.psm1`) to be automatically loaded they have to be placed in a directory having the same name as the the module it self. For instance if `~/Documents/WindowsPowerShell/Modules` is the modules path a module one wants to automatically be loaded named `mod` should be located here: `~/Documents/WindowsPowerShell/Modules/mod/mod.psm1`.
 
+To expose functions defined in modules so that they can be called from elsewhere, this declaration is needed after the function: `Export-ModuleMember -Function theNameOfTheFunction`. Similarly, if you in the module have defined an alias using `New-Alias -Name shortname -Value theNameOfTheFunction`, you would expose the alias with appending `-Alias shortname`, making the entire command: `Export-ModuleMember -Function theNameOfTheFunction -Alias shortname`. However, usually modules end up small enough that there really aren't any helper functions or aliases you don't what exposed. Then you, instead of exposing every single one individually, can have one export-statement at the bottom and pass it `*`:
+```PowerShell
+Export-ModuleMember -Function * -Alias *
+```
+
 # Misc
 
-First time setup (can be run before seting up the ExecutionPolicy, to not mess with permissions maybe don't run as admin?)
+`Out-GridView` can be neat from time to time. Not really useful(?), but very visual example: `Get-NetIPAddress | Out-GridView`.
+
+First time setup (can be run before setting  up the ExecutionPolicy, to not mess with permissions maybe don't run as admin?)
 ```PowerShell
 (Invoke-WebRequest -Uri https://raw.githubusercontent.com/simonra/config/master/WindowsPowerShell/Profile.ps1 -UseBasicParsing).content > $profile
 ```
