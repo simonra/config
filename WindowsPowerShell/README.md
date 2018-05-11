@@ -40,6 +40,8 @@ Export-ModuleMember -Function * -Alias *
 
 `Out-GridView` can be neat from time to time. Not really useful(?), but very visual example: `Get-NetIPAddress | Out-GridView`.
 
+To see what's actually in the path currently, you can run `$env:Path`. This is actually a mix of something like three different registry entries or something like that. If you for some reason are using a binary for a certain project that also likes to install itself system wide with different configs etc it can get really frustrating to ensure that the right path even gets loaded, not to speak of trying to get the right one to be the one that gets run in the end. Therefore the commented out line for overriding the path in the profile. But you usually want to keep some of the preexisting system directories. Therefore it can be a good idea to first run `$env:Path > $PSScriptRoot/path.txt`, before you start populating it with locations you keep track of yourself.
+
 First time setup (can be run before setting  up the ExecutionPolicy, to not mess with permissions maybe don't run as admin?)
 ```PowerShell
 (Invoke-WebRequest -Uri https://raw.githubusercontent.com/simonra/config/master/WindowsPowerShell/Profile.ps1 -UseBasicParsing).content > $profile
