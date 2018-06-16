@@ -8,3 +8,7 @@
 [core]
 	editor = vim
 	excludesfile = ~/etc/.gitignore_global
+#use ';' as the command separator when chaining commands because it works for both bash and powershell
+[alias]
+	autoclean = !"git checkout .;git reset HEAD --hard; git clean -fdx; git submodule foreach --recursive 'git checkout .'"
+	rst = reset --hard @{upstream}
