@@ -12,3 +12,6 @@
 [alias]
 	autoclean = !"git checkout .;git reset HEAD --hard; git clean -fdx; git submodule foreach --recursive 'git checkout .'"
 	rst = reset --hard @{upstream}
+	st = status
+	co = commit -v
+	ch = checkout
