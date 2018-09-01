@@ -17,4 +17,9 @@ function sudo
     Start-Process powershell -Verb RunAs
 }
 
+function logoff
+{
+    Shutdown.exe -L
+}
+
 Export-ModuleMember -Function *
