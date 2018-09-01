@@ -17,6 +17,8 @@ function sudo
     Start-Process powershell -Verb RunAs
 }
 
+New-Alias reboot Restart-Computer
+New-Alias shutdown Stop-Computer
 function logoff
 {
     Shutdown.exe -L
