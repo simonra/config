@@ -6,6 +6,9 @@ Set-PSReadlineKeyHandler -Key Tab -Function Complete
 # More comfortable than typing exit all the time:
 Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
 
+New-Alias reboot Restart-Computer
+New-Alias shutdown Stop-Computer
+
 # Uncomment to set color scheme from console-color module:
 # Set-ConsoleColors $PSScriptRoot/Modules/console-colors/themes/dark.csv
 
