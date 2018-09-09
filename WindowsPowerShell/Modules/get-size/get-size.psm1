@@ -1,4 +1,4 @@
-function GetDirectorySize([ValidateNotNullOrEmpty()][string]$path)
+function GetSizeOfDirectory([ValidateNotNullOrEmpty()][string]$path)
 {
     if(!(Test-Path $path)){
         throw "Directory not found at"
@@ -11,7 +11,7 @@ function GetDirectorySize([ValidateNotNullOrEmpty()][string]$path)
     return FormatSize($sizeInBytes)
 }
 
-function GetSubDirectoriesSize([ValidateNotNullOrEmpty()][string]$path)
+function GetSizeOfSubdirectories([ValidateNotNullOrEmpty()][string]$path)
 {
     if(!(Test-Path $path)){
         throw "Directory not found"
@@ -22,19 +22,19 @@ function GetSubDirectoriesSize([ValidateNotNullOrEmpty()][string]$path)
     $subDirectories = Get-ChildItem $path | Where-Object {$_.PSIsContainer -eq $true} | Sort-Object
     foreach ($subDir in $subDirectories)
     {
-        $subDirSize = GetDirectorySize((Join-Path $path $subDir))
+        $subDirSize = GetSizeOfDirectory((Join-Path $path $subDir))
         $subDirName = $subDir.FullName
         "$subDirName -- $subDirSize"
     }
 }
 
-function GetFileSize([ValidateNotNullOrEmpty()][string]$path)
+function GetSizeOfFile([ValidateNotNullOrEmpty()][string]$path)
 {
     if(!(Test-Path $path)){
         throw "File not found"
     }
     if(!(Test-Path $path -PathType Leaf)){
-        throw "$path is not a file. You might want to use GetDirectorySize instead."
+        throw "$path is not a file. You might want to use GetSizeOfDirectory instead."
     }
 
     $sizeInBytes = (Get-Item -Force $path).Length
@@ -47,10 +47,10 @@ function GetSize([ValidateNotNullOrEmpty()][string]$Path)
         throw "No item found at $path"
     }
     if(Test-Path $path -PathType Container){
-        GetDirectorySize($path)
+        GetSizeOfDirectory($path)
     }
     else {
-        GetFileSize($Path)
+        GetSizeOfFile($Path)
     }
 }
 
