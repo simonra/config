@@ -1,5 +1,6 @@
 function cur($uri)
 {
+    [Net.ServicePointManager]::SecurityProtocol = "Tls12, Tls11, Tls, Ssl3"
     (Invoke-WebRequest -Uri $uri -UseBasicParsing).Content
 }
 
