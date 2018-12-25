@@ -14,5 +14,6 @@
 	rst = reset --hard @{upstream}
 	st = status
 	co = commit -v
-	coam = commit --amend
+	coam = commit --amend --no-edit
+	coame = commit --amend
 	ch = checkout
