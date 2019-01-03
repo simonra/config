@@ -21,6 +21,18 @@ Share and enjoy =)
 
 The source I used for figuring this out: http://unix.stackexchange.com/a/204687/122600
 
+## Note on using with i3 on Arch
+
+I had some issues with applying the keyboard map above in Manjaro while using i3.
+I tried the xmodmap route described below and applying it as suggested in my .xinitrc, to no avail.
+The way I got it to work was by calling the `applyMyXkbMap.sh` script from my i3 config.
+
+The way I did it was add a line to `~/.i3/config` that looked approximately like this:
+
+```
+exec "/path/to/repo/.xkb/applyMyXkbMap.sh"
+```
+
 ## If using xmodmap
 
 If you for some reason need to use xmodmap the process is quite similar,
