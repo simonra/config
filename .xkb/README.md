@@ -1,4 +1,4 @@
-#XKB mapping to AltGr-keys
+# XKB mapping to AltGr-keys
 
 My usecase was that I wanted to map a special set of keys
 to certain key combinations using AltGr (right alt) on the
@@ -21,7 +21,7 @@ Share and enjoy =)
 
 The source I used for figuring this out: http://unix.stackexchange.com/a/204687/122600
 
-#If using xmodmap
+## If using xmodmap
 
 If you for some reason need to use xmodmap the process is quite similar,
 but with some notable differences:
