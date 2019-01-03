@@ -20,3 +20,19 @@ keyboard. Step by step:
 Share and enjoy =)
 
 The source I used for figuring this out: http://unix.stackexchange.com/a/204687/122600
+
+#If using xmodmap
+
+If you for some reason need to use xmodmap the process is quite similar,
+but with some notable differences:
+
+* Change to the us international layout by running:
+    * setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option ctrl:nocaps
+* Dump the layout to file by running:
+    * xmodmap -pke > dump\_keyboard\_file\_name.xmodmap
+* Edit the lines for a, e, and o (keycode 38, 26 and 32)
+    * å,Å is aring,Aring
+    * æ,Æ is ae,AE
+    * ø,Ø is oslash,Oslash
+* Load the new map by running
+    * xmodmap dump\_keyboard\_file\_name.xmodmap
