@@ -7,7 +7,7 @@ of the international us layout, edited it, and set it as the
 keyboard. Step by step:
 
 * Change to the us international layout by running:
-    * setxkbmap -layout us -variant altgr-intl -option nodeadkeys
+    * setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option ctrl:nocaps
 * Dump the layout to file by running:
     * xkbcomp $DISPLAY dump\_keyboard\_file\_name.xkb
 * Edit the third and fourth entriesin the "xkbi\_symbols "pc+us(altgr-intl)+inet(evdev)" section (should be at about line 1095).
