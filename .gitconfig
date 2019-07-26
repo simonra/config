@@ -6,6 +6,8 @@
 [push]
 	default = current
 [core]
+	# for sublime. -w is for wait, -n if you want it to open in new window instead of new tab
+	#editor = subl -w
 	editor = vim
 	excludesfile = ~/etc/.gitignore_global
 #use ';' as the command separator when chaining commands because it works for both bash and powershell
