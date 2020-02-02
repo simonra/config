@@ -27,6 +27,11 @@ function touch($file)
     }
 }
 
+function deleteAllBinObjFolders()
+{
+    Get-ChildItem ./ -include bin,obj -Recurse | foreach ($_) { remove-item $_.fullname -Force -Recurse }
+}
+
 function diffContent($fileA, $fileB)
 {
     diff (cat $fileA) (cat $fileB)
