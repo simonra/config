@@ -1,0 +1,23 @@
+{
+    "editor.renderWhitespace": "all",
+    "editor.wordWrap": "on",
+    "explorer.confirmDelete": false,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": false,
+    "files.trimTrailingWhitespace": true,
+    "terminal.integrated.shell.windows": "C:/Program Files/PowerShell/6/pwsh.exe",
+    "window.title": "${dirty}${activeEditorLong}${separator}${rootName}",
+    "workbench.startupEditor": "none",
+    // Config for the Markdown lint extension (davidanson.vscode-markdownlint)
+    "markdownlint.config": {
+        "MD025": false,
+        "MD041": false
+    },
+    // Config for the REST Client extension (humao.rest-client)
+    "rest-client.certificates": {
+        "api.example.com": {
+            "cert": "/absolute/path/to/certificate.crt",
+            "key": "/absolute/path/to/certificate.key"
+        }
+    },
+}

@@ -1,0 +1,49 @@
+// Place your key bindings in this file to override the defaults
+[
+    // Fix surround selected text behavior oddities.
+    // Note that the key-bindings with "shift+char" are layout specific.
+    // For instance to get double quotes on a norwegian layout you'd have to use "shift+2" (for some weird reason there is not a layout independent scan quote for for instance double quotes).
+    // Also be aware of that, in the snippet, using $TM_SELECTED_TEXT$0 will leave the text un-selected with the cursor at the end of the text,
+    // while using ${0:${TM_SELECTED_TEXT}}$0 preserves the selection and place the cursor at the end of the selection.
+    // (If you had just ${TM_SELECTED_TEXT} without $0 to specify where the character should be after the selection, it would end up placed after the last wrapping character.)
+    {
+        "key": "[Quote]", // '
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorHasSelection",
+        "args": {
+            "snippet": "'${0:${TM_SELECTED_TEXT}}$0'"
+        }
+    },
+    {
+        "key": "shift+'", // "
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorHasSelection",
+        "args": {
+            "snippet": "\"${0:${TM_SELECTED_TEXT}}$0\""
+        }
+    },
+    {
+        "key": "[Backquote]", // `
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorHasSelection",
+        "args": {
+            "snippet": "`${0:${TM_SELECTED_TEXT}}$0`"
+        }
+    },
+    {
+        "key": "shift+[", // {
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorHasSelection",
+        "args": {
+            "snippet": "[${0:${TM_SELECTED_TEXT}}$0]"
+        }
+    },
+    {
+        "key": "shift+,", // <
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorHasSelection",
+        "args": {
+            "snippet": "<${0:${TM_SELECTED_TEXT}}$0>"
+        }
+    },
+]
