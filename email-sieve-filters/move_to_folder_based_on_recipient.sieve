@@ -5,7 +5,7 @@
 require ["fileinto", "mailbox", "variables"];
 # Extract localpart (part of address to the left of the "@") if it's in any of the receive headers.
 # For instance, if we received a mail to "LoCalPaRt@example.com", we would extract "LoCalPaRt" to the variable ${1}.
-if address :localpart :matches ["To", "Cc", "Bcc", "Resent-To"] "*"
+if address :matches :localpart ["To", "Cc", "Bcc", "Resent-To"] "*"
 {
     # Normalize casing and assign the value to the new variable ${name}.
     # Example: "LoCalPaRt" would become "Localpart".
