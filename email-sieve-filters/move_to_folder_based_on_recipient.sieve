@@ -1,8 +1,8 @@
 # The requirements are untested, because my current provider subs in the following:
 # ["body", "copy", "editheader", "envelope", "fileinto", "imap4flags", "mailbox", "reject", "relational", "vacation", "variables"]
-# But I suspect that you only need "fileinto" and "variables".
+# But I suspect that you only need "fileinto", "mailbox", and "variables".
 
-require ["fileinto", "variables"];
+require ["fileinto", "mailbox", "variables"];
 # Extract localpart (part of address to the left of the "@") if it's in any of the receive headers.
 # For instance, if we received a mail to "LoCalPaRt@example.com", we would extract "LoCalPaRt" to the variable ${1}.
 if address :localpart :matches ["To", "Cc", "Bcc", "Resent-To"] "*"
@@ -19,8 +19,8 @@ if address :localpart :matches ["To", "Cc", "Bcc", "Resent-To"] "*"
     }
     else
     {
-        # Note that ":create" does not appear in the RFC as of 2020-07-16.
-        # It is supposed to create the folder, if it does not previously exist, before moving the email in.
+        # ":create" is supposed to create the folder, if it does not previously exist, before moving the email in.
+        # It is defined in the "mailbox" extension (RFC5490).
         fileinto :create "INBOX/${name}";
     }
 }
