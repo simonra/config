@@ -3,20 +3,49 @@
 # But I suspect that you only need "fileinto", "mailbox", and "variables".
 
 require ["fileinto", "mailbox", "reject", "variables"];
-# Extract localpart (part of address to the left of the "@") if it's in any of the ["To", "Cc", "Bcc", "Resent-To"] headers (and matches "*").
+
+# Introduces the "variables" requirement (RFC5229).
+set "domainname" "example.com";
+
+# Testing 'address :matches :domain ["To"] "${domainname}"' ensures that we only process an address
+# if it's bound to to our domain (example.com, set above in the ${domainname} variable),
+# so that we don't create folders for all external parties being CC-ed.
+
+# Testing 'address :matches :localpart ["HeaderName"] "*"' extracts localpart (part of address to the left of the "@") if it's in any of the ["HeaderName"] headers (and matches "*").
 # For instance, if we received a mail to "LoCalPaRt@example.com", we would extract "LoCalPaRt" to the variable ${1}.
 # If your provider supports access to the "Delivered-To" header it might be a good idea to use it instead of or in addition to the 4 relevant headers mandated by the sieve spec.
-# The header list would then become ["To", "Cc", "Bcc", "Resent-To", "Delivered-To"].
-if address :matches :localpart ["To", "Cc", "Bcc", "Resent-To"] "*"
+
+if anyof
+(
+    allof
+    (
+        address :matches :domain ["To"] "${domainname}",
+        address :matches :localpart ["To"] "*"
+    ),
+    allof
+    (
+        address :matches :domain ["Cc"] "${domainname}",
+        address :matches :localpart ["Cc"] "*"
+    ),
+    allof
+    (
+        address :matches :domain ["Bcc"] "${domainname}",
+        address :matches :localpart ["Bcc"] "*"
+    ),
+    allof
+    (
+        address :matches :domain ["Resent-To"] "${domainname}",
+        address :matches :localpart ["Resent-To"] "*"
+    )
+)
 {
     # Normalize casing and assign the value to the new variable ${name}.
     # Example: "LoCalPaRt" would become "Localpart".
-    # Introduces the "variables" requirement (RFC5229).
     set :lower :upperfirst "name" "${1}";
 
     # If we for some reason end up with the localpart being empty, or a name we do not want to filter, exclude it here.
     if anyof (string :is "${name}" "",
-              string :is "${name}" "Myname")
+              string :is "${name}" "Samplename")
     {
         # Introduces the "fileinto" requirement.
         fileinto "INBOX";
