@@ -38,7 +38,7 @@ function retrieve-all-wifi-passwords
     }
 
     $WiFiNameAndPassword = foreach($networkProfileName in $networkProfileNames){
-        write-host "Processing wlan profile [$networkProfileName]."
+        Write-Host "Processing wlan profile [$networkProfileName]."
         if( ($networkProfileName -eq $null) -or ($networkProfileName.length -lt 1) )
         {
             continue
@@ -58,7 +58,7 @@ function retrieve-current-wifi-password
     $WiFiNameAndPassword | Format-Table -AutoSize
 }
 
-function retrieve-wifi-password($NetworkProfileName){
+function retrieve-wifi-password([ValidateNotNullOrEmpty()][string] $NetworkProfileName){
     $networkInfo = netsh wlan show profiles name="$NetworkProfileName" key=clear
 
     $ssidName = "[null]"
