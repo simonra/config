@@ -30,20 +30,20 @@ function reset-networking
 
 function retrieve-all-wifi-passwords
 {
-    $listOfNetworkProfiles = netsh wlan show profiles
-    $networkProfileNamesSelection = $listOfNetworkProfiles | Select-String "\:(.+)$"
-    $networkProfileNames = foreach($selection in $networkProfileNamesSelection.Matches)
+    $ListOfNetworkProfiles = netsh wlan show profiles
+    $NetworkProfileNamesSelection = $ListOfNetworkProfiles | Select-String "\:(.+)$"
+    $NetworkProfileNames = foreach($Selection in $NetworkProfileNamesSelection.Matches)
     {
-        ($selection.Value -split ":")[-1].Trim()
+        ($Selection.Value -split ":")[-1].Trim()
     }
 
-    $WiFiNameAndPassword = foreach($networkProfileName in $networkProfileNames){
-        Write-Host "Processing wlan profile [$networkProfileName]."
-        if( ($networkProfileName -eq $null) -or ($networkProfileName.length -lt 1) )
+    $WiFiNameAndPassword = foreach($NetworkProfileName in $NetworkProfileNames){
+        Write-Host "Processing wlan profile [$NetworkProfileName]."
+        if( ($NetworkProfileName -eq $null) -or ($NetworkProfileName.length -lt 1) )
         {
             continue
         }
-        retrieve-wifi-password $networkProfileName
+        retrieve-wifi-password $NetworkProfileName
     }
 
     # If you for some reason Out-GridView doesn't work for you, you can use the line below to print to the console instead.
@@ -59,26 +59,26 @@ function retrieve-current-wifi-password
 }
 
 function retrieve-wifi-password([ValidateNotNullOrEmpty()][string] $NetworkProfileName){
-    $networkInfo = netsh wlan show profiles name="$NetworkProfileName" key=clear
+    $NetworkInfo = netsh wlan show profiles name="$NetworkProfileName" key=clear
 
-    $ssidName = "[null]"
-    $ssidNameLine = $networkInfo | Select-String -Pattern 'SSID Name'
-    if($ssidNameLine -ne $null)
+    $SsidName = "[null]"
+    $SsidNameLine = $NetworkInfo | Select-String -Pattern 'SSID Name'
+    if($SsidNameLine -ne $null)
     {
-        $ssidName = ($ssidNameLine -split ":")[-1].Trim() -replace '"'
+        $SsidName = ($SsidNameLine -split ":")[-1].Trim() -replace '"'
     }
 
-    $password = "[null]"
-    $passwordLine = $networkInfo | Select-String -Pattern 'Key Content'
-    if($passwordLine -ne $null)
+    $Password = "[null]"
+    $PasswordLine = $NetworkInfo | Select-String -Pattern 'Key Content'
+    if($PasswordLine -ne $null)
     {
-        $password = ($passwordLine -split ":")[-1].Trim() -replace '"'
+        $Password = ($PasswordLine -split ":")[-1].Trim() -replace '"'
     }
 
     return [PSCustomObject] @{
         NetworkProfileName = $NetworkProfileName
-        SSID = $ssidName
-        Password = $password
+        SSID = $SsidName
+        Password = $Password
     }
 }
 
