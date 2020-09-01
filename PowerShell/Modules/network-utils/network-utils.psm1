@@ -76,7 +76,7 @@ function retrieve-wifi-password($wiFiName){
     }
 
     return [PSCustomObject] @{
-        WiFiName = $wiFiName
+        NetworkProfileName = $wiFiName
         SSID = $ssidName
         Password = $password
     }
