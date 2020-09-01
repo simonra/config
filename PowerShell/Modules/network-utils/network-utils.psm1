@@ -28,31 +28,33 @@ function reset-networking
     flushdns
 }
 
-function print-network-passwords
+function retrieve-all-wifi-passwords
 {
-    $networkNamesSelection = netsh wlan show profiles | Select-String "\:(.+)$"
-    $networkNames = foreach($selection in $networkNamesSelection.Matches)
+    $listOfNetworkProfiles = netsh wlan show profiles
+    $networkProfileNamesSelection = $listOfNetworkProfiles | Select-String "\:(.+)$"
+    $networkProfileNames = foreach($selection in $networkProfileNamesSelection.Matches)
     {
         ($selection.Value -split ":")[-1].Trim()
     }
 
-    $nameAndPassword = foreach($name in $networkNames){
-        write-host "Processing wlan profile [$name]."
-        if( ($name -eq $null) -or ($name.length -lt 1) ){
+    $WiFiNameAndPassword = foreach($networkProfileName in $networkProfileNames){
+        write-host "Processing wlan profile [$networkProfileName]."
+        if( ($networkProfileName -eq $null) -or ($networkProfileName.length -lt 1) )
+        {
             continue
         }
-        print-password-for-network $name
+        retrieve-wifi-password $networkProfileName
     }
 
     # If you for some reason Out-GridView doesn't work for you, you can use the line below to print to the console instead.
-    # $nameAndPassword | Format-Table -AutoSize
-    $nameAndPassword | Out-GridView
+    # $WiFiNameAndPassword | Format-Table -AutoSize
+    $WiFiNameAndPassword | Out-GridView
 }
 
-function print-password-for-network($networkName){
-    $networkInfo = netsh wlan show profiles name="$networkName" key=clear
+function retrieve-wifi-password($wiFiName){
+    $networkInfo = netsh wlan show profiles name="$wiFiName" key=clear
 
-    $ssidName = "[null] (SSID for [$networkName] not found)"
+    $ssidName = "[null]"
     $ssidNameLine = $networkInfo | Select-String -Pattern 'SSID Name'
     if($ssidNameLine -ne $null)
     {
@@ -67,7 +69,8 @@ function print-password-for-network($networkName){
     }
 
     return [PSCustomObject] @{
-        WiFiName = $ssidName
+        WiFiName = $wiFiName
+        SSID = $ssidName
         Password = $password
     }
 }
