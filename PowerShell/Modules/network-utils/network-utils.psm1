@@ -48,7 +48,7 @@ function retrieve-all-wifi-passwords
 
     # If you for some reason Out-GridView doesn't work for you, you can use the line below to print to the console instead.
     # $WiFiNameAndPassword | Format-Table -AutoSize
-    $WiFiNameAndPassword | Out-GridView
+    $WiFiNameAndPassword | Sort-Object SSID | Out-GridView
 }
 
 function retrieve-wifi-password($wiFiName){
