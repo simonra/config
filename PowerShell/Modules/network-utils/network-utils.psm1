@@ -32,19 +32,22 @@ function retrieve-all-wifi-passwords
 {
     $ListOfNetworkProfiles = netsh wlan show profiles
     $NetworkProfileNamesSelection = $ListOfNetworkProfiles | Select-String "\:(.+)$"
-    $NetworkProfileNames = foreach($Selection in $NetworkProfileNamesSelection.Matches)
-    {
-        ($Selection.Value -split ":")[-1].Trim()
-    }
-
-    $WiFiNameAndPassword = foreach($NetworkProfileName in $NetworkProfileNames){
-        Write-Host "Processing wlan profile [$NetworkProfileName]."
-        if( ($NetworkProfileName -eq $null) -or ($NetworkProfileName.length -lt 1) )
+    $NetworkProfileNames =
+        foreach($Selection in $NetworkProfileNamesSelection.Matches)
         {
-            continue
+            ($Selection.Value -split ":")[-1].Trim()
         }
-        retrieve-wifi-password $NetworkProfileName
-    }
+
+    $WiFiNameAndPassword =
+        foreach($NetworkProfileName in $NetworkProfileNames)
+        {
+            Write-Host "Processing wlan profile [$NetworkProfileName]."
+            if( ($NetworkProfileName -eq $null) -or ($NetworkProfileName.length -lt 1) )
+            {
+                continue
+            }
+            retrieve-wifi-password $NetworkProfileName
+        }
 
     # If you for some reason Out-GridView doesn't work for you, you can use the line below to print to the console instead.
     # $WiFiNameAndPassword | Format-Table -AutoSize
@@ -58,7 +61,8 @@ function retrieve-current-wifi-password
     $WiFiNameAndPassword | Format-Table -AutoSize
 }
 
-function retrieve-wifi-password([ValidateNotNullOrEmpty()][string] $NetworkProfileName){
+function retrieve-wifi-password([ValidateNotNullOrEmpty()][string] $NetworkProfileName)
+{
     $NetworkInfo = netsh wlan show profiles name="$NetworkProfileName" key=clear
 
     $SsidName = "[null]"
