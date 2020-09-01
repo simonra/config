@@ -53,13 +53,13 @@ function retrieve-all-wifi-passwords
 
 function retrieve-current-wifi-password
 {
-    $wiFiName = (Get-NetConnectionProfile).Name
-    $WiFiNameAndPassword = retrieve-wifi-password $wiFiName
+    $NetworkProfileName = (Get-NetConnectionProfile).Name
+    $WiFiNameAndPassword = retrieve-wifi-password $NetworkProfileName
     $WiFiNameAndPassword | Format-Table -AutoSize
 }
 
-function retrieve-wifi-password($wiFiName){
-    $networkInfo = netsh wlan show profiles name="$wiFiName" key=clear
+function retrieve-wifi-password($NetworkProfileName){
+    $networkInfo = netsh wlan show profiles name="$NetworkProfileName" key=clear
 
     $ssidName = "[null]"
     $ssidNameLine = $networkInfo | Select-String -Pattern 'SSID Name'
@@ -76,7 +76,7 @@ function retrieve-wifi-password($wiFiName){
     }
 
     return [PSCustomObject] @{
-        NetworkProfileName = $wiFiName
+        NetworkProfileName = $NetworkProfileName
         SSID = $ssidName
         Password = $password
     }
