@@ -51,6 +51,13 @@ function retrieve-all-wifi-passwords
     $WiFiNameAndPassword | Sort-Object SSID | Out-GridView
 }
 
+function retrieve-current-wifi-password
+{
+    $wiFiName = (Get-NetConnectionProfile).Name
+    $WiFiNameAndPassword = retrieve-wifi-password $wiFiName
+    $WiFiNameAndPassword | Format-Table -AutoSize
+}
+
 function retrieve-wifi-password($wiFiName){
     $networkInfo = netsh wlan show profiles name="$wiFiName" key=clear
 
