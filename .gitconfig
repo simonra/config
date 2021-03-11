@@ -10,6 +10,8 @@
 	#editor = subl -w
 	editor = vim
 	excludesfile = ~/etc/.gitignore_global
+	# silence bell for scrollable output such as diffs
+	pager = less -q
 #use ';' as the command separator when chaining commands because it works for both bash and powershell
 [alias]
 	autoclean = !"git checkout .;git reset HEAD --hard; git clean -fdx; git submodule foreach --recursive 'git checkout .'"
