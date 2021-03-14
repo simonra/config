@@ -86,4 +86,53 @@ function retrieve-wifi-password([ValidateNotNullOrEmpty()][string] $NetworkProfi
     }
 }
 
+function setdnsservers
+{
+    # Exit before user spends time entering new server addresses.
+    $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+    $callerIsAdmin = $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+
+    if(-not ($callerIsAdmin))
+    {
+        Write-Host "Setting DNS server addresses can only be done as Administrator. You can, however, still view the current IP addresses of the DNS servers if you want to continue.";
+
+        $title    = 'Proceed'
+        $question = 'Do you want to check what the current DNS addresses are?'
+        $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Show DNS addresses."
+        $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Quit."
+        $choices = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
+        [int]$defaultChoiceIndex = 0;
+        $decision = $Host.UI.PromptForChoice($title, $question, $choices, $defaultChoiceIndex)
+        if ($decision -eq 1) # $decision = index of chosen choice, 0-indexed.
+        {
+            return;
+        }
+    }
+
+    $networks = Get-NetAdapter -IncludeHidden `
+        | Sort-Object -Property `
+            @{Expression = "Status"; Descending = $True}, `
+            @{Expression = "ifIndex"; Descending = $false} `
+        | Out-GridView -PassThru
+
+    $interfaceIds = $networks | Select-Object -ExpandProperty ifIndex
+
+    # Print current DNS server addresses for enabling recovery if messing up.
+    Write-Host "Previous DNS server addresses for the chosen interfaces were as follows:"
+    $interfaceIds | ForEach-Object { Get-DnsClientServerAddress -InterfaceIndex $_ }
+
+    if(-not ($callerIsAdmin))
+    {
+        Write-Host "Setting DNS server addresses can only be done as Administrator. Exiting.";
+        return;
+    }
+
+    # ToDo: Make better way of showing that this can also be IPv6 address strings. Also take arbitrary number of addresses without overloading the user with specific formatting rules?
+    $newPrimaryAddress = Read-Host -Prompt "Enter new primary IPv4 DNS address"
+    $newSecondaryAddress = Read-Host -Prompt "Enter new secondary IPv4 DNS address"
+    $interfaceIds | ForEach-Object { Set-DnsClientServerAddress -InterfaceIndex $_ -ServerAddresses ($newPrimaryAddress,$newSecondaryAddress) -Validate }
+    Write-Host "DNS server addresses for the chosen interfaces are now as follows:"
+    $interfaceIds | ForEach-Object { Get-DnsClientServerAddress -InterfaceIndex $_ }
+}
+
 Export-ModuleMember -Function *
