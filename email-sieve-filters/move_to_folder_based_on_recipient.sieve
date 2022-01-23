@@ -40,7 +40,7 @@ if anyof
 )
 {
     # Normalize casing and assign the value to the new variable ${name}.
-    # Example: "LOCALPart" would elsifecome "Localpart".
+    # Example: "LOCALPart" would become "Localpart".
     set :lower :upperfirst "name" "${1}";
 
     # Do blacklist here to not inadvertently create folder for spammers and not sending them to inbox.
