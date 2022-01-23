@@ -13,7 +13,7 @@ set "domainname" "example.com";
 
 # Testing 'address :matches :localpart ["HeaderName"] "*"' extracts localpart (part of address to the left of the "@") if it's in any of the ["HeaderName"] headers (and matches "*").
 # For instance, if we received a mail to "LOCALPart@example.com", we would extract "LOCALPart" to the variable ${1}.
-# If your provider supports access to the "Delivered-To" header it might be a good idea to use it instead of or in addition to the 4 relevant headers mandated by the sieve spec.
+# If your provider supports access to the "Delivered-To" header, then it might be a good idea to use it instead of, or in addition to, the 4 relevant headers which are mandated by the sieve spec.
 
 if anyof
 (
