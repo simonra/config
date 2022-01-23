@@ -12,7 +12,7 @@ set "domainname" "example.com";
 # so that we don't create folders for all external parties being CC-ed.
 
 # Testing 'address :matches :localpart ["HeaderName"] "*"' extracts localpart (part of address to the left of the "@") if it's in any of the ["HeaderName"] headers (and matches "*").
-# For instance, if we received a mail to "LoCalPaRt@example.com", we would extract "LoCalPaRt" to the variable ${1}.
+# For instance, if we received a mail to "LOCALPart@example.com", we would extract "LOCALPart" to the variable ${1}.
 # If your provider supports access to the "Delivered-To" header it might be a good idea to use it instead of or in addition to the 4 relevant headers mandated by the sieve spec.
 
 if anyof
@@ -40,7 +40,7 @@ if anyof
 )
 {
     # Normalize casing and assign the value to the new variable ${name}.
-    # Example: "LoCalPaRt" would become "Localpart".
+    # Example: "LOCALPart" would elsifecome "Localpart".
     set :lower :upperfirst "name" "${1}";
 
     # If we for some reason end up with the localpart being empty, or a name we do not want to filter, exclude it here.
