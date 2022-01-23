@@ -43,15 +43,8 @@ if anyof
     # Example: "LOCALPart" would elsifecome "Localpart".
     set :lower :upperfirst "name" "${1}";
 
-    # If we for some reason end up with the localpart being empty, or a name we do not want to filter, exclude it here.
-    if anyof (string :is "${name}" "",
-              string :is "${name}" "Samplename")
-    {
-        # Introduces the "fileinto" requirement.
-        fileinto "INBOX";
-    }
-    # Do blacklist here to not inadvertently create folder for spammers.
-    elsif anyof (string :is "${name}" "Sales",
+    # Do blacklist here to not inadvertently create folder for spammers and not sending them to inbox.
+    if anyof (string :is "${name}" "Sales",
                  string :is "${name}" "Support")
     {
         # If your provider doesn't support reject you can exchange it for discard to drop the message instead.
@@ -59,6 +52,13 @@ if anyof
         # discard;
         reject "";
         stop;
+    }
+    # If we for some reason end up with the localpart being empty, or a name we do not want to filter, exclude it here.
+    elsif anyof (string :is "${name}" "",
+              string :is "${name}" "Samplename")
+    {
+        # Introduces the "fileinto" requirement.
+        fileinto "INBOX";
     }
     else
     {
