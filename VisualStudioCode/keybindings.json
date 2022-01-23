@@ -1,5 +1,19 @@
+// You can access the json file for overriding the default keybindings by opening the Command Palette and selecting:
+// "Preferences: Open keyboard shortcuts (JSON)"
+
 // Place your key bindings in this file to override the defaults
 [
+    // Make move selection consistent with sublime text.
+    {
+        "key": "ctrl+shift+down",
+        "command": "editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+up",
+        "command": "editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
     // Fix surround selected text behavior oddities.
     // Note that the key-bindings with "shift+char" are layout specific.
     // For instance to get double quotes on a norwegian layout you'd have to use "shift+2" (for some weird reason there is not a layout independent scan quote for for instance double quotes).
