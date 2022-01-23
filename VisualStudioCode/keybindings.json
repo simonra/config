@@ -14,6 +14,12 @@
         "command": "editor.action.moveLinesUpAction",
         "when": "editorTextFocus && !editorReadonly"
     },
+    // Undo change from issue 54492. With this, if no tabs are open, ctrl+w closes the window, like in other text editors, as it should.
+    {
+        "key": "ctrl+w",
+        "command": "workbench.action.closeWindow",
+        "when": "!editorIsOpen && !multipleEditorGroups",
+    },
     // Fix surround selected text behavior oddities.
     // Note that the key-bindings with "shift+char" are layout specific.
     // For instance to get double quotes on a norwegian layout you'd have to use "shift+2" (for some weird reason there is not a layout independent scan quote for for instance double quotes).
