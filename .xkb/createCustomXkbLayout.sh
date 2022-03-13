@@ -4,7 +4,7 @@ setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option ctrl:nocaps
 xkbcomp $DISPLAY customUsInternationalKeyboad.xkb
 
 # Set modifiers for æ, so that AltGr+e yields æ and AltGr+E gives Æ
-sed -i -E "s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*e,\s*E)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, ae, ae \3/" customUsInternationalKeyboad.xkb
+sed -i -E "s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*e,\s*E)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, ae, AE \3/" customUsInternationalKeyboad.xkb
 # Set modifiers for ø, so that AltGr+o yields ø and AltGr+O gives Ø
 sed -i -E "s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*o,\s*O)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, oslash, Oslash \3/" customUsInternationalKeyboad.xkb
 # Set modifiers for å, so that AltGr+a yields å and AltGr+A gives Å
