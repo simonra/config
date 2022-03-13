@@ -1,14 +1,19 @@
+layout_file_name=customUsInternationalKeyboad.xkb
+
 # Set currently active layout to base you want to modify.
 setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option ctrl:nocaps
+
 # Dump current layout to file.
-xkbcomp $DISPLAY customUsInternationalKeyboad.xkb
+xkbcomp $DISPLAY $layout_file_name
 
 # Set modifiers for æ, so that AltGr+e yields æ and AltGr+E gives Æ
-sed -i -E "s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*e,\s*E)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, ae, AE \3/" customUsInternationalKeyboad.xkb
 # Set modifiers for ø, so that AltGr+o yields ø and AltGr+O gives Ø
-sed -i -E "s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*o,\s*O)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, oslash, Oslash \3/" customUsInternationalKeyboad.xkb
 # Set modifiers for å, so that AltGr+a yields å and AltGr+A gives Å
-sed -i -E "s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*a,\s*A)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, aring, Aring \3/" customUsInternationalKeyboad.xkb
+sed -i -E \
+    --expression="s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*e,\s*E)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, ae, AE \3/" \
+    --expression="s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*o,\s*O)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, oslash, Oslash \3/" \
+    --expression="s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*a,\s*A)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, aring, Aring \3/" \
+    $layout_file_name
 
 # Summary of what's actually happening in the sed soup.
 # `-i` replaces matches in the file instead of printing file with modified content to console.
@@ -31,4 +36,4 @@ sed -i -E "s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*a,\s*A)(,*\s*[a-zA-Z0-9_]*\s
 # Note on testing: Because sed by default writes a new string to stdout instead of altering the input, you can safely test by ommitting the `-i` parameter, e.g. running `sed -E "<expression>" filepath`. Alternatively `echo "testinput" | sed -E "<expression>"` or `cat testfile_path | sed -E "<expression>"` work equally well.
 
 # Set newly created layout file with modifications as active.
-xkbcomp customUsInternationalKeyboad.xkb $DISPLAY
+xkbcomp $layout_file_name $DISPLAY
