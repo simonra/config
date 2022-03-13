@@ -267,6 +267,45 @@ xkb_keycodes "evdev+aliases(qwerty)" {
     alias <HZTG> = <TLDE>;
     alias <LMTA> = <LWIN>;
     alias <RMTA> = <RWIN>;
+    alias <OUTP> = <I235>;
+    alias <KITG> = <I236>;
+    alias <KIDN> = <I237>;
+    alias <KIUP> = <I238>;
+    alias <I121> = <MUTE>;
+    alias <I122> = <VOL->;
+    alias <I123> = <VOL+>;
+    alias <I124> = <POWR>;
+    alias <I125> = <KPEQ>;
+    alias <I127> = <PAUS>;
+    alias <I130> = <HNGL>;
+    alias <I131> = <HJCV>;
+    alias <I132> = <AE13>;
+    alias <I133> = <LWIN>;
+    alias <I134> = <RWIN>;
+    alias <I135> = <COMP>;
+    alias <I136> = <STOP>;
+    alias <I137> = <AGAI>;
+    alias <I138> = <PROP>;
+    alias <I139> = <UNDO>;
+    alias <I140> = <FRNT>;
+    alias <I141> = <COPY>;
+    alias <I142> = <OPEN>;
+    alias <I143> = <PAST>;
+    alias <I144> = <FIND>;
+    alias <I145> =  <CUT>;
+    alias <I146> = <HELP>;
+    alias <I191> = <FK13>;
+    alias <I192> = <FK14>;
+    alias <I193> = <FK15>;
+    alias <I194> = <FK16>;
+    alias <I195> = <FK17>;
+    alias <I196> = <FK18>;
+    alias <I197> = <FK19>;
+    alias <I198> = <FK20>;
+    alias <I199> = <FK21>;
+    alias <I200> = <FK22>;
+    alias <I201> = <FK23>;
+    alias <I202> = <FK24>;
     alias <ALGR> = <RALT>;
     alias <KPPT> = <I129>;
     alias <LatQ> = <AD01>;
@@ -320,7 +359,6 @@ xkb_types "complete" {
     };
     type "KEYPAD" {
         modifiers= Shift+NumLock;
-        map[Shift]= Level2;
         map[NumLock]= Level2;
         level_name[Level1]= "Base";
         level_name[Level2]= "Number";
@@ -1243,7 +1281,7 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+ctrl(nocaps)" {
     };
     key <AD03> {
         type= "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1]= [               e,               E,          ae,          AE ]
+        symbols[Group1]= [               e,               E, ae, AE ]
     };
     key <AD04> {
         type= "FOUR_LEVEL_ALPHABETIC",
@@ -1267,7 +1305,7 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+ctrl(nocaps)" {
     };
     key <AD09> {
         type= "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1]= [               o,               O,          oslash,          Oslash ]
+        symbols[Group1]= [               o,               O, oslash, Oslash ]
     };
     key <AD10> {
         type= "FOUR_LEVEL_ALPHABETIC",
@@ -1285,7 +1323,7 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+ctrl(nocaps)" {
     key <LCTL> {         [       Control_L ] };
     key <AC01> {
         type= "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1]= [               a,               A,          aring,          Aring ]
+        symbols[Group1]= [               a,               A, aring, Aring ]
     };
     key <AC02> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",
@@ -1539,7 +1577,7 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+ctrl(nocaps)" {
     key <I166> {         [        XF86Back ] };
     key <I167> {         [     XF86Forward ] };
     key <I169> {         [       XF86Eject ] };
-    key <I170> {         [       XF86Eject,       XF86Eject ] };
+    key <I170> {         [       XF86Eject ] };
     key <I171> {         [   XF86AudioNext ] };
     key <I172> {         [   XF86AudioPlay,  XF86AudioPause ] };
     key <I173> {         [   XF86AudioPrev ] };
@@ -1583,6 +1621,7 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+ctrl(nocaps)" {
     key <I216> {         [ XF86AudioForward ] };
     key <I218> {         [           Print ] };
     key <I220> {         [      XF86WebCam ] };
+    key <I221> {         [ XF86AudioPreset ] };
     key <I223> {         [        XF86Mail ] };
     key <I224> {         [   XF86Messenger ] };
     key <I225> {         [      XF86Search ] };
@@ -1606,6 +1645,12 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+ctrl(nocaps)" {
     key <I244> {         [     XF86Battery ] };
     key <I245> {         [   XF86Bluetooth ] };
     key <I246> {         [        XF86WLAN ] };
+    key <I247> {         [         XF86UWB ] };
+    key <I249> {         [  XF86Next_VMode ] };
+    key <I250> {         [  XF86Prev_VMode ] };
+    key <I251> {         [ XF86MonBrightnessCycle ] };
+    key <I252> {         [ XF86BrightnessAuto ] };
+    key <I253> {         [  XF86DisplayOff ] };
     key <I254> {         [        XF86WWAN ] };
     key <I255> {         [      XF86RFKill ] };
     modifier_map Control { <LCTL> };
@@ -1635,7 +1680,7 @@ xkb_geometry "pc(pc105)" {
     baseColor=   "white";
     labelColor=  "black";
     xfont=       "-*-helvetica-medium-r-normal--*-120-*-*-*-*-iso8859-1";
-    description= "Generic 105";
+    description= "Generic 105-key PC";
 
     shape "NORM" {
         corner= 1,
