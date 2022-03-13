@@ -7,15 +7,15 @@ of the international us layout, edited it, and set it as the
 keyboard. Step by step:
 
 * Change to the us international layout by running:
-    * setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option ctrl:nocaps
+    * `setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option ctrl:nocaps`
 * Dump the layout to file by running:
-    * xkbcomp $DISPLAY dump\_keyboard\_file\_name.xkb
-* Edit the third and fourth entriesin the "xkbi\_symbols "pc+us(altgr-intl)+inet(evdev)" section (should be at about line 1095).
+    * `xkbcomp $DISPLAY dump_keyboard_file_name.xkb`
+* Edit the third and fourth entriesin the `xkb_symbols "pc+us(altgr-intl)+inet(evdev)+ctrl(nocaps)"` section (should be at about line 1219).
     * å,Å is aring,Aring
     * æ,Æ is ae,AE
     * ø,Ø is oslash,Oslash
 * Load the new map by running
-    * xkbcomp dump\_keyboard\_file\_name.xkb $DISPLAY
+    * `xkbcomp dump_keyboard_file_name.xkb $DISPLAY`
 
 Share and enjoy =)
 
@@ -39,12 +39,15 @@ If you for some reason need to use xmodmap the process is quite similar,
 but with some notable differences:
 
 * Change to the us international layout by running:
-    * setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option ctrl:nocaps
+    * `setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option ctrl:nocaps`
 * Dump the layout to file by running:
-    * xmodmap -pke > dump\_keyboard\_file\_name.xmodmap
+    * `xmodmap -pke > dump_keyboard_file_name.xmodmap`
 * Edit the lines for a, e, and o (keycode 38, 26 and 32)
     * å,Å is aring,Aring
     * æ,Æ is ae,AE
     * ø,Ø is oslash,Oslash
 * Load the new map by running
-    * xmodmap dump\_keyboard\_file\_name.xmodmap
+    * `xmodmap dump_keyboard_file_name.xmodmap`
+
+Depending on your setup, it might be that `~/.xinitrc` automatically loads `~/.Xmodmap` as the user modmap.
+In that case, you could simply use `~/.Xmodmap` as the filename in the steps above.
