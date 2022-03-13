@@ -18,6 +18,7 @@ sed -i -E \
 # Summary of what's actually happening in the sed soup.
 # `-i` replaces matches in the file instead of printing file with modified content to console.
 # `-E` enables extended regex mode. `-E` is supposed to work corss plattform, as opposed to `-r`.
+# `--expression=""` allows you to process multiple expressions.
 # `"s/<pattern>/<replacement>/"` tells sed to substitute/replace <pattern> with <replacement>. Note that the delimiteres, here `/` can be relatively freely chosen. So if you have a file path you want to match it could be a good idea to use another character so that you can reduce the escaping of slashes. Example could then be `s:<pattern>:<replacement>`.
 # Note also that in this case, the `s` at the beginning is the "command" you supply to sed, in this case telling it to substitute. Beware that sed can do other things than replace, and that the command does not neccessarily have to come first in the command-string.
 # `\s` should match whitespaces (including tabs).
@@ -34,6 +35,8 @@ sed -i -E \
 # - `\1, aring, Aring \3` says that the replacement is the first group match, followed by ", aring, Aring ", and then having the third group at the end.
 
 # Note on testing: Because sed by default writes a new string to stdout instead of altering the input, you can safely test by ommitting the `-i` parameter, e.g. running `sed -E "<expression>" filepath`. Alternatively `echo "testinput" | sed -E "<expression>"` or `cat testfile_path | sed -E "<expression>"` work equally well.
+
+# For further reading about sed, I found this to be very usefull: https://www.grymoire.com/Unix/Sed.html
 
 # Set newly created layout file with modifications as active.
 xkbcomp $layout_file_name $DISPLAY
