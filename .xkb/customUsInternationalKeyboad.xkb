@@ -336,7 +336,7 @@ xkb_keycodes "evdev+aliases(qwerty)" {
     alias <LatM> = <AB07>;
 };
 
-xkb_types "complete" {
+xkb_types "complete+numpad(mac)" {
 
     virtual_modifiers NumLock,Alt,LevelThree,LAlt,RAlt,RControl,LControl,ScrollLock,LevelFive,AltGr,Meta,Super,Hyper;
 
@@ -358,9 +358,8 @@ xkb_types "complete" {
         level_name[Level2]= "Caps";
     };
     type "KEYPAD" {
-        modifiers= Shift+NumLock;
-        map[NumLock]= Level2;
-        level_name[Level1]= "Base";
+        modifiers= none;
+        map[none]= Level2;
         level_name[Level2]= "Number";
     };
     type "SHIFT+ALT" {
