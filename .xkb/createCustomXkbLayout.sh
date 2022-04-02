@@ -1,7 +1,12 @@
 layout_file_name=customUsInternationalKeyboad.xkb
 
 # Set currently active layout to base you want to modify.
-setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option ctrl:nocaps
+setxkbmap -layout us -variant altgr-intl -option nodeadkeys -option ctrl:nocaps -option numpad:mac
+# Explanation of inpunts to setxkbmap:
+# - `-option numpad:mac` makes it so that the numpad always enters numbers, even if numpad should accidentaly be toggled.
+# - `-option ctrl:nocaps` makes it so that the CapsLock key becomes an actually useful Ctrl key instead.
+# - `-option nodeadkeys` re-enables dead keys?
+# - `-variant altgr-intl` makes it the international version of the US layout with AltGr dead keys.
 
 # Dump current layout to file.
 xkbcomp $DISPLAY $layout_file_name
