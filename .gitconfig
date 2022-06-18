@@ -21,3 +21,5 @@
 	coam = commit --amend --no-edit
 	coame = commit --amend
 	ch = checkout
+[submodule]
+	recurse = true
