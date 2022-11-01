@@ -45,3 +45,9 @@ At the source on <https://get.vial.today/manual/linux-udev.html>, they said to r
 - <https://github.com/qmk/qmk_firmware/issues/17726>
 - <https://github.com/qmk/qmk_firmware/pull/18699>
 - <https://old.reddit.com/r/MechanicalKeyboards/comments/ya82hm/doio_kb16_megalodon_trip_knob_macroapd_has_been/>
+
+## Display keys and keycodes
+
+Get keycodes in terminal: [`xev`](https://man.archlinux.org/man/xev.1) command from [`xorg-xev`](https://github.com/freedesktop/xorg-xev) package.
+
+The tool at <https://config.qmk.fm/#/test> also works very well in the browser.
