@@ -1,17 +1,19 @@
 \documentclass[a4paper]{article}
 \usepackage[lmargin=35mm,rmargin=35mm,tmargin=27mm,bmargin=30mm]{geometry}
-\usepackage[utf8]{inputenc}
-\usepackage[hidelinks]{hyperref} %No borders around links
+\usepackage[utf8]{inputenc} % Allow utf-8 characters in input
+\usepackage[T1]{fontenc} % Make utf-8 content copy-paster properly. NB! Appears to increase filesize signifficantly
+\usepackage[hidelinks]{hyperref} % No borders around links
 \usepackage{microtype}
-%\usepackage[norwegian]{babel}
-%\select@language{norwegian}
+% \usepackage[norsk]{babel}
+% \babelhyphenation[norsk]{hoved-kort-ene} % Example of how to make word break prettier in Norwegain should babel struggle to find out how it is appropriate to do it
+% \hyphenation{every-where} % Example of how to make word break prettier when not using babel
 
 \begin{document}
-
-\pagenumbering{gobble}
+% \selectlanguage{norsk} % Requires \usepackage[norsk]{babel}
+\pagenumbering{gobble} % Removes page number
+\urlstyle{same} % Make urls appear the same as text
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0em}
-\urlstyle{same} %Make urls appear the same as text
 
 \begin{large}
 Application Text
