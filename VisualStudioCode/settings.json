@@ -1,4 +1,5 @@
 {
+    "editor.copyWithSyntaxHighlighting": false,
     "editor.renderWhitespace": "all",
     "editor.wordWrap": "on",
     "explorer.compactFolders": false,
