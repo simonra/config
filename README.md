@@ -64,6 +64,18 @@ makepkg --syncdeps --install
 
 This final step replaced a lot of the built in mesa pacakges.
 
+At the end, find a list of all installed packages related to llvm and/or mesa:
+
+```sh
+pacman -Qs "mesa|llvm"
+```
+
+So that you can add them to `/etc/pacman.conf` with their own ignore-lines like
+`IgnorePkg    = mesa-git` and `IgnorePkg    = llvm-git`.
+This prevents `pacman` or `yay` from picking them up and upgrading them, because they need to be kept somewhat in sync, meaning that you should have to update them explicitly manually by hand once you've started making and installing them by hand like this.
+
+Also note that the pacman regex search for installed packages `pacman -Qs "regex"` works better to get a complete list of packages than running the output from the `pacman` search thorugh `grep`, for instance with `pacman -Qe | grep -E "llvm|mesa"`, because you now have to repeatedly search or make complex sets (for instance `pacman -Qe` lists explicitly installed packages, `pacman -Qm` gives foreign packages, and so on).
+
 # Notes on grep
 
 Useful if you are stuck in a limmited environment (such as git-bash [cygwin] on windows), or have to be very speciffic and not leave stuff up to the goodness of the magical parser:
