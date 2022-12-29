@@ -75,6 +75,7 @@ So that you can add them to `/etc/pacman.conf` with their own ignore-lines like
 This prevents `pacman` or `yay` from picking them up and upgrading them, because they need to be kept somewhat in sync, meaning that you should have to update them explicitly manually by hand once you've started making and installing them by hand like this.
 
 Also note that the pacman regex search for installed packages `pacman -Qs "regex"` works better to get a complete list of packages than running the output from the `pacman` search thorugh `grep`, for instance with `pacman -Qe | grep -E "llvm|mesa"`, because you now have to repeatedly search or make complex sets (for instance `pacman -Qe` lists explicitly installed packages, `pacman -Qm` gives foreign packages, and so on).
+Also the `pacman` regex search appears to not only searches the package names, but also descriptions.
 
 # Notes on grep
 
