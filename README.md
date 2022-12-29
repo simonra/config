@@ -21,7 +21,13 @@ Then I removed the `shiboken6` package (for generating documentation for python)
 sudo pacman -Rd --nodeps shiboken6
 ```
 
-(note that it wants you to specify that you wish to ignore dependenices twice, hence I supplied both `-d` and `--nodeps`.)
+(Note that it wants you to specify that you wish to ignore dependenices twice, hence I supplied both `-d` and `--nodeps`.)
+
+Also LLDB is a dependency for the install, which could be installed from pacman (even though LLDB then ended up being version 14, while the llvm I made was supposed to end up as version 16).
+
+```sh
+sudo pacman -S lldb
+```
 
 Then I could install the newer llvm version from source using aur
 
