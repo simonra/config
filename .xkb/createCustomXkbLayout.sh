@@ -43,5 +43,6 @@ sed -i -E \
 
 # For further reading about sed, I found this to be very usefull: https://www.grymoire.com/Unix/Sed.html
 
+echo "Setting newly created layout file with modifications as the active one"
 # Set newly created layout file with modifications as active.
 xkbcomp $layout_file_name $DISPLAY
