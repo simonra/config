@@ -18,6 +18,14 @@ sed -i -E \
     --expression="s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*e,\s*E)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, ae, AE \3/" \
     --expression="s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*o,\s*O)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, oslash, Oslash \3/" \
     --expression="s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[\s*a,\s*A)(,*\s*[a-zA-Z0-9_]*\s*,\s*[a-zA-Z0-9_]*\s*)(\]$)/\1, aring, Aring \3/" \
+    --expression="s/^(\s*symbols\[Group[0-9]+\]\s*=\s*\[)(\s*backslash,\s*bar,\s*backslash,\s*bar\s*)(\]$)/\1       division,         multiply,        notequal,    similarequal \3/" \
+    --expression="s/^(\s*key\s*<FK13>\s*\{\s*\[)(.*)(\]\s*\};$)/\1             F13 \3/" \
+    --expression="s/^(\s*key\s*<FK14>\s*\{\s*\[)(.*)(\]\s*\};$)/\1             F14 \3/" \
+    --expression="s/^(\s*key\s*<FK15>\s*\{\s*\[)(.*)(\]\s*\};$)/\1             F15 \3/" \
+    --expression="s/^(\s*key\s*<FK16>\s*\{\s*\[)(.*)(\]\s*\};$)/\1             F16 \3/" \
+    --expression="s/^(\s*key\s*<FK17>\s*\{\s*\[)(.*)(\]\s*\};$)/\1             F17 \3/" \
+    --expression="s/^(\s*key\s*<FK18>\s*\{\s*\[)(.*)(\]\s*\};$)/\1             F18 \3/" \
+    --expression="s/^(\s*key\s*<FK19>\s*\{\s*\[)(.*)(\]\s*\};$)/\1             F19 \3/" \
     $layout_file_name
 
 # Summary of what's actually happening in the sed soup.
